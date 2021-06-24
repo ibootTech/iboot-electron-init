@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "node scripts/dev.js",
-    "build": "node scripts/build.js"
+    "build": "node scripts/build.js",
+    "wininstall": "node scripts/wininstall.js"
   },
   "keywords": [
     "Electron",
@@ -13,7 +14,11 @@
     "Typescript"
   ],
   "author": "ibootTech",
-  "license": "ISC",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ibootTech/iboot-electron-init.git"
+  },
   "dependencies": {
     "ant-design-vue": "^2.1.2",
     "axios": "^0.21.1",

@@ -52,6 +52,11 @@ export default {
     const title = ref(document.title)
     const techs = [
       {
+        name: 'Electron',
+        ver: '13.1.4',
+        link: 'https://www.electronjs.org'
+      },
+      {
         name: 'Vue3',
         ver: '3.0.0',
         link: 'https://v3.cn.vuejs.org'
@@ -83,7 +88,7 @@ export default {
       setTimeout(() => {
         loadingStatus.value = false
       }, 2000)
-      console.log(window)
+      window.electron.test()
       console.log('===onMounted===')
     })
     onUpdated(() => {

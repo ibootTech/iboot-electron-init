@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from 'electron'
-import defaultWindow from '../../config/electron.window.js'
-import Squirrel from './squirrel'
+import defaultWindow from './config/electron.window'
+import Squirrel from './lib/squirrel'
+import initIpcMain from './lib/ipcMain'
 function createWindow() {
   const win = new BrowserWindow(defaultWindow)
   if (process.env.NODE_ENV === 'development') {
@@ -19,4 +20,5 @@ app.on('activate', () => {
     createWindow()
   }
 })
+initIpcMain()
 Squirrel.eventHandler(app.quit)

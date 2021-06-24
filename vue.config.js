@@ -5,8 +5,7 @@ module.exports = {
   publicPath: process.env.VUE_APP_PUBLIC_PATH || '',
   pages: {
     index: {
-      entry: 'src/render/main.ts',
-      template: 'src/public/index.html'
+      entry: 'src/render/main.ts'
     }
   },
   productionSourceMap: false,

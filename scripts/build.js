@@ -9,7 +9,7 @@ let electronProcess = null
 let manualRestart = false
 const buildConfig = {
   arch: 'x64',
-  asar: false,
+  asar: true,
   dir: path.join(__dirname, '../dist'),
   ignore: /(^\/(src|node_modules|test|\.[a-z]+|README|yarn|static|dist\/web))|\.gitkeep/,
   out: path.join(__dirname, '../build'),
@@ -60,7 +60,9 @@ function build() {
       console.log('copy success')
     })
   })
-  packager(buildConfig)
+  packager(buildConfig).then(() => {
+    process.exit()
+  })
 }
 function start() {
   rm(path.join(__dirname, '../dist/'), err => {

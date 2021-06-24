@@ -1,13 +1,7 @@
-import { contextBridge, remote } from 'electron'
+import { contextBridge } from 'electron'
+import ipcRenderer from './lib/ipcRenderer'
 contextBridge.exposeInMainWorld('electron', {
-  showMessage: (options: any):void => {
+  test: (): void => {
+    ipcRenderer.dialogInvoke('showMessageBox', { title: '测试', message: 'hello Electron!' })
   }
 })
-declare global {
-  interface Window {
-    electron: Electron
-  }
-}
-export interface Electron {
-  contextBridge: (options) => void
-}
