@@ -9,6 +9,7 @@ let electronProcess = null
 let manualRestart = false
 const buildConfig = {
   arch: 'x64',
+  platform: 'darwin',
   asar: true,
   dir: path.join(__dirname, '../dist'),
   ignore: /(^\/(src|node_modules|test|\.[a-z]+|README|yarn|static|dist\/web))|\.gitkeep/,
