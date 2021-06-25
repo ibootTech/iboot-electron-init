@@ -10,7 +10,7 @@ async function start() {
       exe: getName() + '.exe',
       noMsi: true
     })
-    console.log('It worked!')
+    console.log('It worked!!')
   } catch (e) {
     console.log(`No dice: ${e.message}`)
   }
