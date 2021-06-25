@@ -1,11 +1,15 @@
 {
   "name": "iboot-electron-init",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Electron And Vue3 And Typescript Template",
   "private": true,
   "scripts": {
     "dev": "node scripts/dev.js",
-    "build": "node scripts/build.js",
+    "build:win": "node scripts/build.js win",
+    "build:mac": "node scripts/build.js darwin",
+    "build:linux": "node scripts/build.js linux",
+    "build:linux:arm": "node scripts/build.js linux:arm64",
+    "test": "node scripts/test.js d s",
     "wininstall": "node scripts/wininstall.js"
   },
   "keywords": [

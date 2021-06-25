@@ -6,11 +6,11 @@ async function start() {
   try {
     await electronInstaller.createWindowsInstaller({
       appDirectory: path.join(__dirname, '../build/' + name),
-      outputDirectory: path.join(__dirname, '../build/' + name + '/installer64'),
+      outputDirectory: path.join(__dirname, '../build/winInstall'),
       exe: getName() + '.exe',
       noMsi: true
     })
-    console.log('It worked!!')
+    console.log('It worked!')
   } catch (e) {
     console.log(`No dice: ${e.message}`)
   }

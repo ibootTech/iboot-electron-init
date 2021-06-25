@@ -5,18 +5,11 @@ const packager = require('electron-packager')
 const Service = require('@vue/cli-service')
 const rm = require('rimraf')
 const fs = require('fs')
+const { getName, getVersion, getElectronVersion, getAuthor, getDescription } = require('../config/package')
 let electronProcess = null
-let manualRestart = false
-const buildConfig = {
-  arch: 'x64',
-  platform: 'win32',
-  asar: true,
-  dir: path.join(__dirname, '../dist'),
-  ignore: /(^\/(src|node_modules|test|\.[a-z]+|README|yarn|static|dist\/web))|\.gitkeep/,
-  out: path.join(__dirname, '../build'),
-  overwrite: true,
-  electronVersion: '13.1.4'
-}
+const BuildConfig = require('../config/buildConfig')
+const argv = process.argv
+const buildConfig = new BuildConfig(argv[2], true, !argv[3])
 function buildMain() {
   return new Promise(resolve => {
     mainConfig.mode = 'production'
@@ -26,13 +19,9 @@ function buildMain() {
     })
     mainCompiler.watch({}, () => {
       if (electronProcess && electronProcess.kill) {
-        manualRestart = true
         process.kill(electronProcess.pid)
         electronProcess = null
         build()
-        setTimeout(() => {
-          manualRestart = false
-        }, 5000)
       }
       resolve()
     })
@@ -47,18 +36,15 @@ function buildRender() {
   })
 }
 function build() {
-  fs.readFile(path.join(__dirname, '../package.json'), 'utf-8', (err, data) => {
-    let package = path.join(__dirname, '../dist/package.json')
-    let srcPackage = JSON.parse(data)
-    let newPackage = {}
-    newPackage.name = srcPackage.name
-    newPackage.version = srcPackage.version
-    newPackage.main = 'app.js'
-    newPackage.author = srcPackage.author
-    newPackage.description = srcPackage.description
-    fs.writeFile(package, JSON.stringify(newPackage), () => {
-      console.log('copy success')
-    })
+  let packageJSON = path.join(__dirname, '../dist/package.json')
+  let newPackage = {}
+  newPackage.name = getName()
+  newPackage.version = getVersion()
+  newPackage.main = 'app.js'
+  newPackage.author = getAuthor()
+  newPackage.description = getDescription()
+  fs.writeFile(packageJSON, JSON.stringify(newPackage), () => {
+    console.log('copy success')
   })
   packager(buildConfig).then(() => {
     process.exit()

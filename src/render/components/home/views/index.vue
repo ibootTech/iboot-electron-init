@@ -87,8 +87,8 @@ export default {
       })
       setTimeout(() => {
         loadingStatus.value = false
+        window.electron.test()
       }, 2000)
-      window.electron.test()
       console.log('===onMounted===')
     })
     onUpdated(() => {
