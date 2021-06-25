@@ -15,8 +15,7 @@ const buildConfig = {
   ignore: /(^\/(src|node_modules|test|\.[a-z]+|README|yarn|static|dist\/web))|\.gitkeep/,
   out: path.join(__dirname, '../build'),
   overwrite: true,
-  electronVersion: '13.1.4',
-  electronZipDir: path.join(__dirname, '../')
+  electronVersion: '13.1.4'
 }
 function buildMain() {
   return new Promise(resolve => {
